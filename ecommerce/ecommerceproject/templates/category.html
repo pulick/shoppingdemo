@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block metadescription %}
+    {% if category %}
+        {{ category.description|truncatewords:155 }}
+    {% else %}
+        Welcome to the world of Goodone & Co
+    {% endif %}
+{% endblock %}
+
+{% block title %}
+    {% if category %}
+        {{ category.name }} Goodone Store
+    {% else %}
+        Our new collections - Goodone
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    {% if category %}
+        <div>
+            <div class="row my_row_class">
+                <div class="mx-auto">
+                    <p><a href="{% url 'shop:allProdCat' %}">Our Product Collections</a></p>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <div class="mx-auto">
+        {% if category %}
+            <img class="my_image" src="{{ category.image.url }}" alt="{{ category.name }}">
+        </div>
+        <br>
+        <div>
+            <h1 class="text_center my_title">{{ category.name }}</h1>
+            <p class="text-justify">{{ category.description }}</p>
+        </div>
+    {% else %}
+        <div>
+            <img class="my_image my_image_padding" src="{% static 'img/banner.png' %}" alt="our product">
+        </div>
+        <br>
+        <div>
+            <h1 class="text-center my_title">Our products collections</h1>
+            <p class="text-justify">Welcome to Our Online Store! Discover the latest trends and shop for your favorite products from the comfort of your home. Our online store offers a vast selection of high-quality items, ranging from fashion to electronics. Whether you're looking for stylish apparel, cutting-edge gadgets, or home essentials, we've got you covered.</p>
+        </div>
+    {% endif %}
+
+    <!-- Grid view for products -->
+    <div class="row mx-auto">
+        {% for product in products.object_list %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <a href="{{ product.get_url }}"><img src="{{ product.image.url }}" alt="{{ product.name }}" class="card-img-top"></a>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">{{ product.price }}</p>
+                    <button class="mt-auto btn btn-primary">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="mx-auto">
+        {% if products.paginator.num_pages > 1 %}
+            <hr>
+        </div>
+        <div class="text-center">
+            {% for pg in products.paginator.page_range %}
+                <a href="?page={{ pg }}" class="btn btn-light btn-sm {% if products.number == pg %} active {% endif %}">{{ pg }}</a>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+<br>
+{% endblock %}

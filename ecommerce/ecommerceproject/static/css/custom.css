@@ -1,0 +1,60 @@
+/* ... Your existing styles ... */
+
+
+/* Product page */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 10px;
+}
+
+.product-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border: 1px solid #ccc;
+}
+
+.product-item img {
+  width: 100%;
+  height: auto;
+}
+
+.product-item h3 {
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  margin-top: 10px;
+}
+
+.product-item p {
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+
+/*** Cart page ***/
+.my_custom_table {
+  min-width: 400px;
+  font-size: 14px;
+}
+
+.my_custom_thead {
+  font-weight: normal;
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  background-color: #f8f9fa!important;
+}
+
+.custom_a {
+  text-decoration: none; /* Fixed typo */
+  color: #868e96 !important;
+}
+
+.my_custom_button {
+  margin-top: 5px; /* Fixed typo */
+}
